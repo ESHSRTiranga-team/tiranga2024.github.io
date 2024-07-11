@@ -167,7 +167,7 @@
 
   form.addEventListener('submit', e => {
   				e.preventDefault()
-	  			fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+				
 				let name = document.getElementById("School Name");
 				let address = document.getElementById("Address");
 				let number = document.getElementById("Mobile Number");
@@ -176,8 +176,8 @@
 				let C1DD = document.getElementById("C1-DD");
 				let C1PD = document.getElementById("C1-PD");
 				let C1PR = document.getElementById("C1-PR");
-				let CRR = document.getElementById("C1-RR");
-				var events1Dict = {C1DD:C1DD.checked, C1PD:C1PD.checked, C1PR:C1PR.checked, CRR:CRR.checked}
+				let C1RR = document.getElementById("C1-RR");
+				var events1Dict = {C1DD:C1DD.checked, C1PD:C1PD.checked, C1PR:C1PR.checked, C1RR:C1RR.checked}
 				
 				let C2DT = document.getElementById("C2-DT");
 				let C2BW = document.getElementById("C2-BW");
@@ -219,6 +219,14 @@
 				let C6WAI = document.getElementById("C6-WAI");
 				var events6Dict = {C6D:C6D.checked,C6B:C6B.checked,C6WAI:C6WAI.checked}
 
+				var cost = (C1DD.checked?100:0) + (C1PD.checked?100:0) + (C1PR.checked?100:0) + (C1RR.checked?100:0)
+				cost += (C2DT.checked?100:0) + (C2BW.checked?200:0) + (C2SS.checked?100:0) + (C2ST.checked?100:0)
+				cost += (C3SMM.checked?150:0) + (C3BOW.checked?200:0) + (C3PM.checked?100:0) + (C3D.checked?100:0) + (C3SOS.checked?100:0) + (C3PS.checked?100:0) + (C3FP.checked?100:0)
+				cost += (C4WM.checked?200:0) + (C4MM.checked?200:0) + (C4PM.checked?200:0) + (C4D.checked?100:0) + (C4SS.checked?100:0) + (C4PS.checked?100:0) + (C4FP.checked?100:0)
+				cost += (C5WM.checked?200:0) + (C5MM.checked?200:0) + (C5HTP.checked?100:0) + (C5ST.checked?200:0) + (C5MaM.checked?200:0) + (C5D.checked?100:0) + (C5SS.checked?100:0) + (C5JAM.checked?100:0) + (C5Q.checked?200:0)
+				cost += (C6D.checked?350:0) + (C6B.checked?350:0) + (C6WAI.checked?200:0)
+
+
 				localStorage.setItem("name", name.value);
 				localStorage.setItem("address", address.value);
 				localStorage.setItem("number", number.value);
@@ -229,6 +237,7 @@
 				localStorage.setItem("events4", JSON.stringify(events4Dict));
 				localStorage.setItem("events5", JSON.stringify(events5Dict));
 				localStorage.setItem("events6", JSON.stringify(events6Dict));
+				localStorage.setItem("cost", JSON.stringify(cost));
 
               window.location = "payment.html"
             })
